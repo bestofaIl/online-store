@@ -7,6 +7,8 @@ const schema = new Schema({
     image: String,
     sex: { type: String, enum: ["male", "female"] },
     cart: [{ type: Schema.Types.ObjectId, ref: "Product" }]
+}, {
+    timestamps: true
 });
 
 module.exports = model("User", schema);
