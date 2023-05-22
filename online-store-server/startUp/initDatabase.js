@@ -8,7 +8,7 @@ module.exports = async () => {
     const category = await Category.find();
 
     if (category.length !== categoryMock.length) {
-        console.log("another");
+        // console.log("another");
         await createInitialEntity(Category, categoryMock);
     }
 

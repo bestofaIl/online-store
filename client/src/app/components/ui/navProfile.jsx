@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const NavProfile = () => {
+    const history = useHistory();
     return (
         <div className="dropdown">
-            <button className="dropbtn">Profile</button>
+            <button className="dropbtn" onClick={() => history.push("/profile")}>Profile</button>
             <div className="dropdown-content">
                 <Link to="/logout" className="dropdown-item">
                     Logout

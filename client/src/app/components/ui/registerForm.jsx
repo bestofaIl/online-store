@@ -3,11 +3,12 @@ import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
 import RadioField from "../common/form/radioField";
 import CheckBoxField from "../common/form/checkBoxField";
-// import { useDispatch } from "react-redux";
+import { signUp } from "../../store/users";
+import { useDispatch } from "react-redux";
 // import { signUp } from "../../store/users";
 
 const RegisterForm = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -73,15 +74,16 @@ const RegisterForm = () => {
         return Object.keys(errors).length === 0;
     };
     const isValid = Object.keys(errors).length === 0;
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // const isValid = validate();
-        // if (!isValid) return;
+        const isValid = validate();
+        if (!isValid) return;
+        // console.log(data);
         // const newData = {
         //     ...data,
         //     qualities: data.qualities.map((quality) => quality.value)
         // };
-        // dispatch(signUp(newData));
+        await dispatch(signUp(data));
     };
     return (
         <form onSubmit={handleSubmit}>

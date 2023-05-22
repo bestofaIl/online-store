@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
 import CheckBoxField from "../common/form/checkBoxField";
-// import { useHistory } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../store/users";
 // import { getAuthError, logIn } from "../../store/users";
 
 const LoginForm = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const loginError = useSelector(getAuthError());
-    // const history = useHistory();
+    const history = useHistory();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -48,12 +49,12 @@ const LoginForm = () => {
     const isValid = Object.keys(errors).length === 0;
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const isValid = validate();
-        // if (!isValid) return;
-        // const redirect = history?.location?.state?.from?.pathname
-        //     ? history.location.state.from.pathname
-        //     : "/";
-        // dispatch(logIn({ payload: data, redirect }));
+        const isValid = validate();
+        if (!isValid) return;
+        const redirect = history?.location?.state?.from?.pathname
+             ? history.location.state.from.pathname
+             : "/";
+        dispatch(logIn({ payload: data, redirect }));
     };
     return (
         <form onSubmit={handleSubmit}>
